@@ -17,11 +17,12 @@ let prefpaneAS = """
                         activate
                     end tell
                  """
+let lockAS = "tell application \"System Events\" to keystroke \"q\" using {control down, command down}"
 
 let sleepAS = "tell application \"System Events\" to sleep"
 
 let searchAS = "tell application \"System Events\" to keystroke space using {command down, option down}"
-let spotlightAS = "tell application \"System Events\" to keystroke space using command down"
+let spotlightAS = "tell application \"System Events\" to keystroke space using {command down}"
 let siriAS = """
                 tell application "System Events" to tell the front menu bar of process "SystemUIServer"
                   tell (first menu bar item whose description is "Siri")

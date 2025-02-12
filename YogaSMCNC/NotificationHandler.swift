@@ -201,6 +201,8 @@ func eventActuator(_ desc: EventDesc, _ data: UInt32, _ conf: inout SharedConfig
         CoreDockSendNotification("com.apple.launchpad.toggle" as CFString, nil)
     case .prefpane:
         prefpaneHelper()
+    case .lock:
+        _ = scriptHelper(lockAS, desc.name)
     case .sleep:
         if desc.display {
             showOSDRes(desc.name, .kSleep)

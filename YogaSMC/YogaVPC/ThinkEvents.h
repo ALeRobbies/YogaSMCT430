@@ -18,6 +18,7 @@
 enum tpacpi_hkey_event_t : UInt32 {
     /* Hotkey-related */
     TP_HKEY_EV_HOTKEY_BASE      = 0x1001, /* First hotkey (FN+F1, _Q10) */
+    TP_HKEY_EV_LOCK             = 0x1002, /* Lock button (F4, _Q13) */
     TP_HKEY_EV_SLEEP            = 0x1004, /* Sleep button (F4, _Q13) */
     TP_HKEY_EV_NETWORK          = 0x1005, /* Network (F8, _Q64) */
     TP_HKEY_EV_DISPLAY          = 0x1007, /* Dual Display (F7, _Q16/_Q19) */
@@ -31,7 +32,7 @@ enum tpacpi_hkey_event_t : UInt32 {
     TP_HKEY_EV_SETTING          = 0x101D, /* Settings (F9, _Q66) */
     TP_HKEY_EV_SEARCH           = 0x101E, /* Search (F10, _Q67) */
     TP_HKEY_EV_MISSION          = 0x101F, /* All open apps/Mission Control (F11, _Q68) */
-    TP_HKEY_EV_APPS             = 0x1020, /* All programs/Launchpad (F12, _Q69) */
+    TP_HKEY_EV_APPS             = 0x1018, /* All programs/Launchpad (F12, _Q69) */
 
     /* Hotkey-related (preset masks) */
     TP_HKEY_EV_STAR             = 0x1311, /* Star (F12, _Q62) */
