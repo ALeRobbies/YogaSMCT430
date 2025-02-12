@@ -13,7 +13,7 @@ import os.log
 enum EventAction: String {
     // Userspace
     case nothing, script, launchapp, launchbundle
-    case airplane, wireless, bluetooth, bluetoothdiscoverable
+    case airplane, wireless, bluetooth, bluetoothdiscoverable, rfkill
     case prefpane, spotlight, search, siri, sleep, lock, micmute
     case mission, launchpad, desktop, expose
     case mirror, camera, yoga
@@ -117,6 +117,7 @@ let ideaEvents: [UInt32: [UInt32: EventDesc]] = [
 ]
 
 let thinkEvents: [UInt32: [UInt32: EventDesc]] = [
+    TP_HKEY_EV_HOTKEY_BASE.rawValue: [0: EventDesc("Launchpad", act: .launchpad, display: false)], // 0x1001
     TP_HKEY_EV_LOCK.rawValue: [
         0: EventDesc("Lock", act: .lock, display: false),
         optionFlag: EventDesc("Lock", act: .lock)
@@ -129,14 +130,18 @@ let thinkEvents: [UInt32: [UInt32: EventDesc]] = [
         0: EventDesc("Wireless", act: .wireless),
         optionFlag: EventDesc("Airplane Mode", act: .airplane)
     ], // 0x1005
+    TP_HKEY_EV_MEDIA.rawValue: [
+        0: EventDesc("Camera", .kCamera, act: .camera),
+        optionFlag: EventDesc("Photo Booth", act: .launchapp, display: false, opt: "Photo Booth")
+    ],
     TP_HKEY_EV_DISPLAY.rawValue: [0: EventDesc("Second Display", .kSecondDisplay, act: .mirror)], // 0x1007
     TP_HKEY_EV_BRGHT_UP.rawValue: [0: EventDesc("Brightness Up", display: false)], // 0x1010
     TP_HKEY_EV_BRGHT_DOWN.rawValue: [0: EventDesc("Brightness Down", display: false)], // 0x1011
     TP_HKEY_EV_KBD_LIGHT.rawValue: [0: EventDesc("Keyboard Backlight", act: .backlight)], // 0x1012
     TP_HKEY_EV_MIC_MUTE.rawValue: [0: EventDesc("Mic Mute", act: .micmute)], // 0x101B
+    TP_HKEY_EV_VANTAGE.rawValue: [0: EventDesc("Spotlight", act: .spotlight, display: false)], // 0x101E
     TP_HKEY_EV_SETTING.rawValue: [0: EventDesc("Settings", act: .prefpane, display: false)], // 0x101D
     TP_HKEY_EV_SEARCH.rawValue: [0: EventDesc("Search", act: .siri, display: false)], // 0x101E
-    TP_HKEY_EV_HOTKEY_BASE.rawValue: [0: EventDesc("Spotlight", act: .spotlight, display: false)], // 0x1001
     TP_HKEY_EV_MISSION.rawValue: [0: EventDesc("Mission Control", act: .mission, display: false)], // 0x101F
     TP_HKEY_EV_APPS.rawValue: [0: EventDesc("Launchpad", act: .launchpad, display: false)], // 0x1020
     TP_HKEY_EV_STAR.rawValue: [
@@ -168,7 +173,7 @@ let thinkEvents: [UInt32: [UInt32: EventDesc]] = [
         5: EventDesc("Tent Mode")
     ], // 0x60C0
     TP_HKEY_EV_THM_TRANSFM_CHANGED.rawValue: [0: EventDesc("Thermal Changed", display: false)], // 0x60F0
-    TP_HKEY_EV_RFKILL_CHANGED.rawValue: [0: EventDesc("Airplane Mode", .kAntenna, act: .airplane, display: true)]
+    TP_HKEY_EV_RFKILL_CHANGED.rawValue: [0: EventDesc("Airplane Mode", act: .rfkill, display: true)]
 ]
 
 let HIDDEvents: [UInt32: [UInt32: EventDesc]] = [

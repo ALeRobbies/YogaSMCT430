@@ -158,6 +158,8 @@ func eventActuator(_ desc: EventDesc, _ data: UInt32, _ conf: inout SharedConfig
         if desc.display { showOSD(desc.name, desc.image) }
     case .airplane:
         airplaneModeHelper(desc.name, desc.display)
+    case .rfkill:
+        showOSDRes("Airplane", "Mode", .kAirplaneMode)
     case .bluetooth:
         bluetoothHelper(desc.name, desc.display)
     case .bluetoothdiscoverable:
