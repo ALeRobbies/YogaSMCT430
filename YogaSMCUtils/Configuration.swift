@@ -131,8 +131,7 @@ let thinkEvents: [UInt32: [UInt32: EventDesc]] = [
         optionFlag: EventDesc("Airplane Mode", act: .airplane)
     ], // 0x1005
     TP_HKEY_EV_MEDIA.rawValue: [
-        0: EventDesc("Camera", .kCamera, act: .camera),
-        optionFlag: EventDesc("Photo Booth", act: .launchapp, display: false, opt: "Photo Booth")
+        0: EventDesc("Photo Booth", act: .launchapp, display: false, opt: "Photo Booth")
     ],
     TP_HKEY_EV_DISPLAY.rawValue: [0: EventDesc("Second Display", .kSecondDisplay, act: .mirror)], // 0x1007
     TP_HKEY_EV_BRGHT_UP.rawValue: [0: EventDesc("Brightness Up", display: false)], // 0x1010
